@@ -20,7 +20,7 @@
             }                    
         ?>
         <label for="item" value="Neuer Wert:"></label><br>
-        <input type="text" name="item"><br>
+        <input type="text" name="item" autofocus><br>
         <input type="submit" value="Bestätigen">
     </form>
     <br>
