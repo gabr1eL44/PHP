@@ -22,11 +22,18 @@
         ?>
         <?php
             if (isset($_GET['value1']) && isset($_GET['value1'])) {
-                $res = $Add($_GET['value1'], $_GET['value2']);
-                $res *= 2;
-                $res -= $_GET['value2'];
-                $res -= $Divide($_GET['value1'], $_GET['value2']);
-                echo "<p>".$res."</p>";
+                $a = $_GET['value1'];
+                $b = $_GET['value2'];
+
+                for ($x = 0; $x < 1; $x++) {
+                    $res = $Add($a, $b);
+                    $res *= 2;
+                    $res -= $b;
+                    $res -= $Divide($a, $b);
+                    $res += 3*$a;
+                    $a = $res;
+                }
+                echo "<p>".$res."</p>";   
             }
         ?>
     </form>
