@@ -16,9 +16,9 @@
             echo '<ul><li><a href="./Logout.php">Logout</a></li></ul>';
         }
         else {
-            echo "Unerlaubter Zugriff!<br>";
-            echo '<ul><li><a href="./Login.php">Login</a></li><//ul>';
-            echo '<ul><li><a href="./Register.php">Register</a></li></ul>';
+            echo "Unerlaubter Zugriff! Sie werden auf die Login-Seite weitergeleitet...<br>";
+            header("refresh:3;url=./login.php");
+            exit();
         }
     ?>
 </body>

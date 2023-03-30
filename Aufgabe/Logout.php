@@ -12,8 +12,15 @@
 <body>
     <?php
         // Session auflösen
-        session_destroy();
-        echo "Sie sind jetzt ausgeloggt!";
-        echo '<ul><li><a href="./Login.php">Login</a></li></ul>';
+        if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true)) {
+            header("Location: ./login.php");
+            exit();
+        }
+        else {
+            session_destroy();
+            echo "Sie sind jetzt ausgeloggt!";
+            header("refresh:3;url=./login.php");
+            exit();
+        }
     ?>
 </body>

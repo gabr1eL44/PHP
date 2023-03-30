@@ -39,7 +39,9 @@
             }
             else {
                 $_SESSION["loggedin"] = $_GET['username'];
-                echo "Sie sind jetzt eingeloggt!";
+                echo "Erfolgreich eingeloggt! Sie werden weitergeleitet...";
+                header("refresh:3;url=./Geheim.php");
+                exit();
             }
         };
     ?>

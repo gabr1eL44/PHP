@@ -37,7 +37,9 @@
             if (empty($stmt->fetch())) {
                 $sql = "INSERT INTO Login (Username, Password) VALUES ('".$_GET['username']."', '".hash('sha256', $_GET['password'])."');";
                 $stmt = $conn->query( $sql );
-                echo "Erfolgreich registriert!";
+                echo "Erfolgreich registriert! Sie werden weitergeleitet...";
+                header("refresh:3;url=./login.php");
+                exit();
             }
             else
                 echo "Nutzer bereits vorhanden!";
