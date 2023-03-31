@@ -13,7 +13,7 @@
     <?php
         if (isset($_SESSION['loggedin'])) {
             echo "Willkommen im Secret Garden!";
-            echo '<ul><li><a href="./Logout.php">Logout</a></li></ul>';
+            echo '<ul><li><a href="./logout.php">Logout</a></li></ul>';
         }
         else {
             echo "Unerlaubter Zugriff! Sie werden auf die Login-Seite weitergeleitet...<br>";

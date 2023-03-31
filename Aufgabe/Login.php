@@ -40,7 +40,7 @@
             else {
                 $_SESSION["loggedin"] = $_GET['username'];
                 echo "Erfolgreich eingeloggt! Sie werden weitergeleitet...";
-                header("refresh:3;url=./Geheim.php");
+                header("refresh:3;url=./secret.php");
                 exit();
             }
         };
@@ -57,7 +57,7 @@
         if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true))
             echo '<ul><li><a href="./Register.php">Register</a></li></ul>';
         else
-            echo '<ul><li><a href="./Geheim.php">Geheimer Garten</a></li></ul>';
+            echo '<ul><li><a href="./secret.php">Geheimer Garten</a></li></ul>';
     ?>
 </body>
 </html>

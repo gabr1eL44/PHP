@@ -54,7 +54,7 @@
         <input type="submit" value="Registrieren">
     </form>
     <ul>
-        <li><a href="./Login.php">Login</a></li>
+        <li><a href="./login.php">Login</a></li>
     </ul>
 </body>
 </html>
