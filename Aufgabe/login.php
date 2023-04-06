@@ -3,7 +3,6 @@
     // Session starten
     session_start();
     $cookie_name = 'sessionid';
-
     // Zugangsdaten
     $dbServer = "localhost";
     $dbPort = "3306";
@@ -48,6 +47,7 @@
                 $sql = "INSERT INTO Sessions (SessionID, UserID, ExpireDate) VALUES ('".hash('sha256', $sessionID)."', ".$userID.",'".date("Y-m-d H:i:s", time() + (86400 * 7))."')";
                 $stmt = $conn->query( $sql );
 
+                // Erzeuge Cookie für dauerhaften Login
                 setcookie($cookie_name, $sessionID, time() + (86400 * 365), "/"); // 86400 = 1 day
 
                 $_SESSION["loggedin"] = true;

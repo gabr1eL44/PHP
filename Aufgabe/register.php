@@ -3,7 +3,6 @@
     // Session starten
     session_start();
     $cookie_name = 'sessionid';
-    
     // Zugangsdaten
     $dbServer = "localhost";
     $dbPort = "3306";

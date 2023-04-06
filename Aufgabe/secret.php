@@ -3,7 +3,6 @@
     // Session starten
     session_start();
     $cookie_name = 'sessionid';
-
     // Zugangsdaten
     $dbServer = "localhost";
     $dbPort = "3306";
@@ -26,12 +25,20 @@
 </head>
 <body>
     <?php
-        $sql = "SELECT * FROM Sessions WHERE SessionID='".hash('sha256', $_COOKIE[$cookie_name])."'";
-        $stmt = $conn->query( $sql );
-        if (!empty($stmt->fetch())) {
-            echo "Willkommen im Secret Garden!";
-            echo '<ul><li><a href="./logout.php">Logout</a></li></ul>';
-            $_SESSION["loggedin"] = true;
+        // Prüfe, ob Cookie mit aktiver Sitzung übereinstimmt
+        if (!empty($_COOKIE[$cookie_name])) {
+            $sql = "SELECT * FROM Sessions WHERE SessionID='".hash('sha256', $_COOKIE[$cookie_name])."'";
+            $stmt = $conn->query( $sql );
+            if (!empty($stmt->fetch())) {
+                echo "Willkommen im Secret Garden!";
+                echo '<ul><li><a href="./logout.php">Logout</a></li></ul>';
+                $_SESSION["loggedin"] = true;
+            }
+            else {
+                echo "Unerlaubter Zugriff! Sie werden auf die Login-Seite weitergeleitet...<br>";
+                header("refresh:3;url=./login.php");
+                exit();
+            }
         }
         else {
             echo "Unerlaubter Zugriff! Sie werden auf die Login-Seite weitergeleitet...<br>";

@@ -3,7 +3,6 @@
     // Session starten
     session_start();
     $cookie_name = 'sessionid';
-
     // Zugangsdaten
     $dbServer = "localhost";
     $dbPort = "3306";
@@ -32,6 +31,7 @@
             exit();
         }
         else 
+            // Erkläre Cookie für abgelaufen und lösche Session aus Datenbank
             setcookie($cookie_name, "", time() - 3600);  
             
             $sql = "DELETE FROM Sessions WHERE SessionID='".hash('sha256', $_COOKIE[$cookie_name])."'";
