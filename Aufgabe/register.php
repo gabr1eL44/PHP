@@ -2,6 +2,21 @@
 <?php
     // Session starten
     session_start();
+    $cookie_name = 'sessionid';
+    
+    // Zugangsdaten
+    $dbServer = "localhost";
+    $dbPort = "3306";
+    $dbDatabase = "PHP";
+    $dbUser = "stefan";
+    $dbPassword = "1234";
+    // Erstelle Verbindung
+    $conn = new PDO("mysql:host=$dbServer:$dbPort;dbname=$dbDatabase", "$dbUser", "$dbPassword");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
+    $conn->beginTransaction();
+    $sql = "SET NAMES 'utf8';";
+    $stmt = $conn->query( $sql );
 ?>
 <html lang="de">
 <head>
@@ -11,21 +26,6 @@
 </head>
 <body>
     <?php
-        // Zugangsdaten
-        $dbServer = "localhost";
-        $dbPort = "3306";
-        $dbDatabase = "PHP";
-        $dbUser = "stefan";
-        $dbPassword = "1234";
-
-        // Erstelle Verbindung
-        $conn = new PDO("mysql:host=$dbServer:$dbPort;dbname=$dbDatabase", "$dbUser", "$dbPassword");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn->setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);
-        $conn->beginTransaction();
-        $sql = "SET NAMES 'utf8';";
-        $stmt = $conn->query( $sql );
-
         // Erstelle Tabelle, falls nicht bereits vorhanden
         $sql = "CREATE TABLE IF NOT EXISTS Login (ID int NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20), password VARCHAR(64));";
         $stmt = $conn->query( $sql );
