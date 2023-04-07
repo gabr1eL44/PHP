@@ -25,6 +25,16 @@
 </head>
 <body>
     <?php
+        // Prüfe, ob bereits eingeloggt
+        if (!empty($_COOKIE[$cookie_name])) {
+            $sql = "SELECT * FROM Sessions WHERE SessionID='".hash('sha256', $_COOKIE[$cookie_name])."'";
+            $stmt = $conn->query( $sql );
+            if (!empty($stmt->fetch())) {
+                echo "Sie sind bereits eingeloggt! Sie werden weitergeleitet...";
+                header("refresh:3;url=./secret.php");
+                exit();
+            }
+        }
         // Erstelle Tabelle, falls nicht bereits vorhanden
         $sql = "CREATE TABLE IF NOT EXISTS Login (ID int NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20), password VARCHAR(64));";
         $stmt = $conn->query( $sql );
